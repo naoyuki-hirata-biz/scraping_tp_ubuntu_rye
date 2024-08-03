@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  python:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        - UID=${DOCKER_UID:-1000}
+        - GID=${DOCKER_GID:-1000}
+        - USERNAME=${DOCKER_USERNAME:-dev}
+        - PASSWORD=${DOCKER_USER_PASSWORD:-password}
+    working_dir: '/opt/python/scraping_tp_ubuntu'
+    tty: true
+    privileged: true
+    shm_size: '2gb'
+    volumes:
+      - .:/opt/python/scraping_tp_ubuntu
